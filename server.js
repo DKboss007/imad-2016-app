@@ -5,25 +5,65 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne={
-    title: 'Article One | Numbers',
-    heading: 'Article One',
-    date: '12 Nov 2016',
-    content:
-    `<p>
-        1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5.
-        1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5.
-        1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5.
-        1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5.
-        1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5.
-    </p>
-    <p>
-        6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10.
-        6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10.
-        6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10.
-        6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10.
-        6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10.
-    </p>`
+var articles={
+    'article-one': {
+        title: 'Article One | Numbers',
+        heading: 'Article One',
+        date: '12 Nov 2016',
+        content:
+        `<p>
+            1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5.
+            1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5.
+            1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5.
+            1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5.
+            1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5.
+        </p>
+        <p>
+            6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10.
+            6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10.
+            6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10.
+            6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10.
+            6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10.
+        </p>`
+    },
+    'article-two': {
+        title: 'Article Two | Alphabets',
+        heading: 'Article Two',
+        date: '12 Nov 2016',
+        content:
+        `<p>
+            A B C D E A B C D E A B C D E A B C D E A B C D E A B C D E A B C D E A B C D E A B C D E.
+            A B C D E A B C D E A B C D E A B C D E A B C D E A B C D E A B C D E A B C D E.
+            A B C D E A B C D E A B C D E A B C D E A B C D E A B C D E A B C D E.
+            A B C D E A B C D E A B C D E A B C D E A B C D E A B C D E.
+            A B C D E A B C D E A B C D E A B C D E A B C D E.
+        </p>
+        <p>
+            W X Y Z W X Y Z W X Y Z W X Y Z W X Y Z W X Y Z W X Y Z W X Y Z.
+            W X Y Z W X Y Z W X Y Z W X Y Z W X Y Z W X Y Z W X Y Z.
+            W X Y Z W X Y Z W X Y Z W X Y Z W X Y Z W X Y Z.
+            W X Y Z W X Y Z W X Y Z W X Y Z W X Y Z.
+            W X Y Z W X Y Z W X Y Z W X Y Z.
+        </p>`
+    },
+    'article-three': {
+        title: 'Article Three | Alpha Num',
+        heading: 'Article Three',
+        date: '12 Nov 2016',
+        content:
+        `<p>
+            A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3.
+            A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3.
+            A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3.
+            A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3 A B C D 1 2 3.
+        </p>
+        <p>
+            X Y Z 3 2 1 X Y Z 3 2 1 X Y Z 3 2 1 X Y Z 3 2 1 X Y Z 3 2 1 X Y Z 3 2 1.
+            X Y Z 3 2 1 X Y Z 3 2 1 X Y Z 3 2 1 X Y Z 3 2 1 X Y Z 3 2 1.
+            X Y Z 3 2 1 X Y Z 3 2 1 X Y Z 3 2 1 X Y Z 3 2 1.
+            X Y Z 3 2 1 X Y Z 3 2 1 X Y Z 3 2 1.
+        </p>`
+    }
 };
 
 function createTemplate(data){
@@ -65,26 +105,13 @@ function createTemplate(data){
     return htmlTemplate;
 }
 
-
-
-
-
-
-
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res) {
-  res.send(createTemplate(articleOne));
-});
-
-app.get('/article-two', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-
-app.get('/article-three', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
+app.get('/:articleName', function (req, res) {
+    var articleName = req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
 });
 
 app.get('/ui/style.css', function (req, res) {
